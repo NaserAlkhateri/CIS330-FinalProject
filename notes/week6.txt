@@ -1,0 +1,14 @@
+Week6
+
+Team members:
+Ahmed Al-Ali
+Naser AlKhateri
+Majed AlMazrouei
+
+Notes:
+
+We have met and dicided on using c++ for the project as it will
+be easier to use classes for the game. We have decided that the user
+will choose the grid size, which will determine the difficulty of the game.
+We will also try to implement different options for the user on whether to play
+against another player or a computer. 
