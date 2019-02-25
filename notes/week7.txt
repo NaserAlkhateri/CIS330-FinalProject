@@ -1,0 +1,15 @@
+Week7
+
+Team members:
+Ahmed Al-Ali
+Naser AlKhateri
+Majed AlMazrouei
+
+Notes:
+
+We have started building our project, 
+and we have agreed on the what goes inside the header files.
+We succefully have built the code for printing the board based
+on user input. We used classes for the project, 
+and applied dynamic memory from allocation to dellocation.
+
