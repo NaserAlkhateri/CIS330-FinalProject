@@ -1,0 +1,13 @@
+Week8
+
+Team members:
+Ahmed Al-Ali
+Naser AlKhateri
+Majed AlMazrouei
+
+Notes:
+
+We have worked on the movement of the character,
+reworked the print function to update the investigator's
+position. The work includes boundary checkings for the
+movements of the character.
