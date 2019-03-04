@@ -8,7 +8,7 @@
 
 BoardType::BoardType(){
 	
-	int i, j;
+	int i, j, x, y;
 	string **boardArr = nullptr;
 	int sizeMax = 20;
 	int sizeMin = 5;
@@ -40,10 +40,18 @@ BoardType::BoardType(){
 	array = boardArr;
 	isFinished = false;
 	
-	
-	
-	
-	
+	cout << "Investigator coordinates (x y): " << endl;
+	cin >> x >> y;
+	while ((x > size || x < 0)||(y > size || y < 0)){
+		cout << "Invalid input!\nInvestigator coordinates (x y): " << endl;
+	cin >> x >> y;
+	}
+	playerX = x;
+	playerY = y;
+	array[playerX][playerY] = '*';
+	botX = rand() % size;
+	botY = rand() % size;
+	cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 }
 
 
@@ -77,20 +85,51 @@ void BoardType::printBoard(){
 }
 
 void BoardType::changeBoard(){
+	int userInput = 0;
+	//menu options for the user
+	while(userInput != 6){
+	cout << 
+	"Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\nEnter 1-6:" <<endl;
+	cin >> userInput;
+		//move in the direction given after checking if its valid.
+		if(userInput == 1 && playerX != 0){
+			
+			cout<<"DEBUG: North"<<endl;
+			array[playerX][playerY] = '-';
+			playerX -= 1;
+			array[playerX][playerY] = '*';
+			printBoard();
+		}else if(userInput == 2 && playerY != (size-1)){
+			cout<<"DEBUG: East"<<endl;
+			array[playerX][playerY] = '-';
+			playerY += 1;
+			array[playerX][playerY] = '*';
+			printBoard();
+		}else if(userInput == 3 && playerX != (size-1)){
+			cout<<"DEBUG: South"<<endl;
+			array[playerX][playerY] = '-';
+			playerX += 1;
+			array[playerX][playerY] = '*';
+			printBoard();			
+		}else if(userInput == 4 && playerY != 0){
+			cout<<"DEBUG: West"<<endl;
+			array[playerX][playerY] = '-';
+			playerY -= 1;
+			array[playerX][playerY] = '*';
+			printBoard();
+		}else if(userInput == 5){
+			printBoard();
+		}else{
+			cout << "Movement is not valid" << endl;
+			printBoard();
+		}
+		
+	}
 	
-	
-	
-	
-	
-	
-	
+	cout << "exited" << endl;
 }
 
 void BoardType::checkWin(){
-	
-	
-	
-	
 	
 	
 	

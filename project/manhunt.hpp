@@ -1,12 +1,13 @@
 //Author: Ahmed Al Ali, Naser Al Khateri, Majed Al Mazrouei
 //Header file for class BoardType
 
-#ifndef BOARD_H_
-#define BOARD_H_
+#ifndef MANHUNT_HPP_
+#define MANHUNT_HPP_
 
 #include <iostream>
 #include <string>
-
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 //Struct for board
@@ -38,6 +39,10 @@ class BoardType{
 		string **array;
 		int size;
 		int player;
+		int playerX;
+		int playerY;
+		int botX;
+		int botY;
 		int bot;
 		bool isFinished;
 		string emptySlot;

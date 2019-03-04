@@ -11,7 +11,7 @@ int main ()
   BoardType board;
   //while (board.getIsFinished() == false){}
   board.printBoard();  
-
+	board.changeBoard();
   return 0;
  
 }
