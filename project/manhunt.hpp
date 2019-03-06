@@ -20,10 +20,10 @@ class BoardType{
 		void changeBoard();
 		
 		//computer movements
-		computerMove();
+		void computerMove();
 		
 		// This is a function that holds score and determines winner
-		void checkWin();
+		void checkWin(string winner);
 
 		// Self explanatory, function to print the board.
 		void printBoard();
