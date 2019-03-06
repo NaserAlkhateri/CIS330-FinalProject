@@ -45,7 +45,7 @@ BoardType::BoardType(){
   array = boardArr;
   isFinished = false;
   printBoard();
-  cout << "Investigator coordinates (x y): " << endl;
+  cout << "Investigator starting coordinates (x y): " << endl;
   cin >> x >> y;
   while ((x > (size-1) || x < 0)||(y > (size-1) || y < 0)){
     cout << "Invalid input!\nInvestigator coordinates (x y): " << endl;
@@ -54,7 +54,10 @@ BoardType::BoardType(){
   playerX = x;
   playerY = y;
   array[playerX][playerY] = 'P';
+  srand(time(0));//to get a different number each time  
   botX = rand() % size;
+  //is this needed again??
+  //srand(time(0));
   botY = rand() % size;
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 }
@@ -90,7 +93,7 @@ void BoardType::printBoard(){
 }
 
 void BoardType::changeBoard(){
-	int userInput = 0;
+	userInput = 0;
 	int count = 0;
 	//menu options for the user
 	while(userInput != 6){
@@ -158,6 +161,7 @@ void BoardType::checkWin(string winner){
 	cout << "checking move" << endl;
 	if (array[playerX][playerY] == array[botX][botY]){
 		cout << winner << " won!!!" << endl;
+		userInput = 6; //force the loop to stop
 	}
   
   
@@ -166,59 +170,56 @@ void BoardType::computerMove(){
 	//like the player options, computer will have a random move 1-4
 	int choice = 0;
 	int count = 0;
+	srand(time(0));
 	choice = (rand() % 4) + 1;
+	cout << "choice generated for CP: " << choice << endl;
 	//checks if move valid
 	while(count > 3){
 	if(choice == 1 && botX != 0){
 	    
 	    cout<<"CP DEBUG: North"<<endl;
-	    //array[playerX][playerY] = '-';
+	   
 	    botX -= 1;
-	    //array[playerX][playerY] = 'P';
-	    //printBoard();
+	   
 		count++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 2 && botY != (size-1)){
 	    cout<<"CP DEBUG: East"<<endl;
-	    //array[playerX][playerY] = '-';
+	   
 	    botY += 1;
-	    //array[playerX][playerY] = 'P';
-	    //printBoard();
+	   
 		count++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 3 && botX != (size-1)){
 	    cout<<"CP DEBUG: South"<<endl;
-	    //array[playerX][playerY] = '-';
+	   
 	    botX += 1;
-	    //array[playerX][playerY] = 'P';
-	    //printBoard();
+	   
 		count++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 4 && botY != 0){
 	    cout<< "CP DEBUG: West" << endl;
-	    //array[playerX][playerY] = '-';
+	    
 	    botY -= 1;
-	    //array[playerX][playerY] = 'P';
+	   
 
 		count++;
 		checkWin("Computer");
 	  }else{
-		  //gives it a new random choice 
-		  //because the one generated is invalid
-		  choice = (rand() % 4) + 1;
+	    //gives it a new random choice 
+	    //because the one generated is invalid
+	    srand(time(0));
+	    choice = (rand() % 4) + 1;
 		  
 		  
 	  }
-		
-		cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
-		
-		
-		
-	}
 	
+	
+	}
+	cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
 	
 }
 bool BoardType::getIsFinished(){
