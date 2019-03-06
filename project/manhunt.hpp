@@ -18,7 +18,10 @@ class BoardType{
 
 		//This is where all the movement is supposed to happen.
 		void changeBoard();
-
+		
+		//computer movements
+		computerMove();
+		
 		// This is a function that holds score and determines winner
 		void checkWin();
 
