@@ -155,6 +155,7 @@ void BoardType::changeBoard(){
 }
 
 void BoardType::checkWin(string winner){
+	cout << "checking move" << endl;
 	if (array[playerX][playerY] == array[botX][botY]){
 		cout << winner << " won!!!" << endl;
 	}
