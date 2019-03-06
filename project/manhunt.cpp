@@ -12,7 +12,11 @@ BoardType::BoardType(){
 	string **boardArr = nullptr;
 	int sizeMax = 20;
 	int sizeMin = 5;
-
+	
+	// Used to move between user and computer turn
+	int player = 1;
+	int bot = 0;
+	
     // asks for user input on board size
 	cout << "Please enter the length of the board (5 - 20): ";
 	cin >> size;
@@ -86,6 +90,7 @@ void BoardType::printBoard(){
 
 void BoardType::changeBoard(){
 	int userInput = 0;
+	
 	//menu options for the user
 	while(userInput != 6){
 	cout << 
@@ -99,27 +104,32 @@ void BoardType::changeBoard(){
 			playerX -= 1;
 			array[playerX][playerY] = '*';
 			printBoard();
-		}else if(userInput == 2 && playerY != (size-1)){
+		}
+		else if(userInput == 2 && playerY != (size-1)){
 			cout<<"DEBUG: East"<<endl;
 			array[playerX][playerY] = '-';
 			playerY += 1;
 			array[playerX][playerY] = '*';
 			printBoard();
-		}else if(userInput == 3 && playerX != (size-1)){
+		}
+		else if(userInput == 3 && playerX != (size-1)){
 			cout<<"DEBUG: South"<<endl;
 			array[playerX][playerY] = '-';
 			playerX += 1;
 			array[playerX][playerY] = '*';
 			printBoard();			
-		}else if(userInput == 4 && playerY != 0){
+		}
+		else if(userInput == 4 && playerY != 0){
 			cout<<"DEBUG: West"<<endl;
 			array[playerX][playerY] = '-';
 			playerY -= 1;
 			array[playerX][playerY] = '*';
 			printBoard();
-		}else if(userInput == 5){
+		}
+		else if(userInput == 5){
 			printBoard();
-		}else{
+		}
+		else{
 			cout << "Movement is not valid" << endl;
 			printBoard();
 		}
