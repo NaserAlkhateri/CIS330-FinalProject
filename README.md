@@ -28,3 +28,26 @@ There is a possibility that expanding this idea might take an extremely
 long time to implement since adding new ideas will require adding new rules to 
 be theorized before even implementing them.
 
+** How to run?
+
+Make file is included in the project.
+
+* To run normal test 
+
+type in the bash:
+make
+
+then type: 
+./manhunt.exe
+
+this should run the game.
+
+* To run memory check:
+
+type in the bash:
+make memcheckManhunt.exe
+
+then type: 
+./memcheckManhunt.exe
+
+this should run the game with valgrind (Checks memory leakage).
