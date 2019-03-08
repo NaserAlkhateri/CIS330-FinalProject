@@ -3,9 +3,6 @@
 
 
 
-
-
-
 BoardType::BoardType(){
 	
   int i, j, x, y;
@@ -59,6 +56,7 @@ BoardType::BoardType(){
   //is this needed again??
   //srand(time(0));
   botY = rand() % size;
+  array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 }
 
@@ -89,7 +87,6 @@ void BoardType::printBoard(){
 	
 	
 	
-	
 }
 
 void BoardType::changeBoard(){
@@ -99,7 +96,7 @@ void BoardType::changeBoard(){
 	while(userInput != 6){
 	  if(count == 3){
 		  count = 0;
-		  cout << "Computer made 3 moves!" << endl;
+		  cout << "computer finished making 3 moves!" << endl;
 		  computerMove();
 	  }
 	  cout << 
@@ -169,16 +166,24 @@ void BoardType::checkWin(string winner){
 void BoardType::computerMove(){
 	//like the player options, computer will have a random move 1-4
 	int choice = 0;
+	srand(time(0));
 	int count = 0;
+	/*
 	srand(time(0));
 	choice = (rand() % 4) + 1;
+	
 	cout << "choice generated for CP: " << choice << endl;
+	*/
 	//checks if move valid
-	while(count > 3){
+	array[botX][botY] = '-';
+	while(count < 3){
+	  //srand(time(0));
+	  choice = (rand() % 4) + 1;
+	  cout << "choice generated for CP: " << choice << endl;
 	if(choice == 1 && botX != 0){
 	    
 	    cout<<"CP DEBUG: North"<<endl;
-	   
+	    //array[botX][botY] = '-';
 	    botX -= 1;
 	   
 		count++;
@@ -219,6 +224,7 @@ void BoardType::computerMove(){
 	
 	
 	}
+	array[botX][botY] = "C";
 	cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
 	
 }
