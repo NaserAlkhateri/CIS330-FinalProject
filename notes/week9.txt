@@ -1,0 +1,16 @@
+Week9
+
+Team members:
+Ahmed Al-Ali
+Naser AlKhateri
+Majed AlMazrouei
+
+Notes:
+
+We have worked on the player movement more, and added a rule 
+which allows the player to move 3 fields per round to any direction.
+We have developed the functionality of the computer movements. 
+We used srand and rand functions to generate the next fields for
+the computer. Now the game can decided the winner by who lands on the 
+other character first. For example, if the computer landed in a field
+where the player is in that field. The computer wins, and vice versa.
