@@ -38,6 +38,10 @@ public:
 
   //save game
   void saveBoard();
+
+  //load game
+  void loadBoard();
+  
   //Cleans memory
   ~BoardType();
   

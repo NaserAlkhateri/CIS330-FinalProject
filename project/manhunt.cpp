@@ -242,6 +242,10 @@ void BoardType::saveBoard(){
   userInput = 6;//forces loop to stop = game ends
 
 }
+void BoardType::loadBoard(){
+  //load implementation
+
+}
 bool BoardType::getIsFinished(){
   
   
