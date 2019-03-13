@@ -8,6 +8,8 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
+
 using namespace std;
 
 //Struct for board
@@ -33,7 +35,9 @@ public:
   
   // Returns boolean isFinished
   bool getIsFinished();
-  
+
+  //save game
+  void saveBoard();
   //Cleans memory
   ~BoardType();
   

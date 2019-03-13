@@ -228,6 +228,20 @@ void BoardType::computerMove(){
 	cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
 	
 }
+
+void BoardType::saveBoard(){
+
+  string fileName;
+  cout << "What would like to name your fie? (name.txt): ";
+  cin >> fileName;
+  ofstream myFile;
+  myFile.open(fileName);
+  myFile << playerX << playerY << botX << botY;
+  cout << "Game saved successfully" << endl;
+  myFile.close();
+  userInput = 6;//forces loop to stop = game ends
+
+}
 bool BoardType::getIsFinished(){
   
   
