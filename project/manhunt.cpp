@@ -61,7 +61,34 @@ BoardType::BoardType(){
 }
 
 
+BoardType::BoardType(int x){
+	
+	loadBoard();
 
+ 
+  int i, j;
+  string **boardArr = nullptr;
+	//Initializes dynamic array for the board
+  boardArr = new string * [size];
+  for (i = 0; i < size; i++) {
+    boardArr[i] = new string [size];
+    // Set values
+    for (j = 0; j < size; j++){
+      boardArr[i][j] = "-";
+    }
+  }
+  
+  
+  // Initialize to player 1, and start of game
+  emptySlot = "-";
+  size = size;
+  array = boardArr;
+  isFinished = false;
+  printBoard();
+	array[botX][botY] = "C";
+  cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
+	
+}
 
 void BoardType::printBoard(){
 	cout << "      ";
@@ -100,7 +127,7 @@ void BoardType::changeBoard(){
 		  computerMove();
 	  }
 	  cout << 
-	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\nEnter 1-6:" <<endl;
+	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save GameEnter 1-7:" <<endl;
 	  cin >> userInput;
 	  //move in the direction given after checking if its valid.
 
@@ -143,6 +170,9 @@ void BoardType::changeBoard(){
 	  }
 	  else if(userInput == 5){
 	    printBoard();
+	  }else if(userInput == 7){
+		  saveBoard();
+		  
 	  }
 	  else{
 	    cout << "Movement is not valid" << endl;
@@ -236,15 +266,25 @@ void BoardType::saveBoard(){
   cin >> fileName;
   ofstream myFile;
   myFile.open(fileName);
-  myFile << playerX << playerY << botX << botY;
-  cout << "Game saved successfully" << endl;
+  myFile << playerX << " " << playerY << " " << botX << " " << botY << " " << size;
+  cout << "Game saved successfully in file name: " << fileName << endl;
   myFile.close();
   userInput = 6;//forces loop to stop = game ends
 
 }
 void BoardType::loadBoard(){
   //load implementation
-
+  string fileName;
+  cout << "What is the file name that you would like to load?: ";
+  cin >> fileName;
+	ifstream myFile;
+	myFile.open(fileName);
+	  if (myFile.is_open()){
+      myFile >> playerX >> playerY >> botX >> botY >> size;
+      //myFile.close();
+    }else cout << fileName <<" file not found, please check the file entered" << endl; 
+	 myFile.close();
+	array[playerX][playerY] = 'P';
 }
 bool BoardType::getIsFinished(){
   

@@ -18,6 +18,8 @@ public:
   //Initializes board
   BoardType();
   
+  //constructor
+  BoardType(int x);
   //This is where all the movement is supposed to happen.
   void changeBoard();
   
