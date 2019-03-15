@@ -39,6 +39,7 @@ BoardType::BoardType(){
   emptySlot = "-";
   size = size;
   array = boardArr;
+  userInput = 0;
   isFinished = false;
   printBoard();
   cout << "Investigator starting coordinates (x y): " << endl;
@@ -84,6 +85,7 @@ BoardType::BoardType(int x){
   emptySlot = "-";
   size = size;
   array = boardArr;
+  userInput = 0;
   isFinished = false;
   //printBoard();
   userInput = 0;
@@ -192,4 +194,86 @@ void BoardType::printThreat(){
 	}
 	cout << endl;
 	
+}
+
+void BoardType::changeBoard(){
+	//userInput = 0;
+	int count = 0;
+	
+	//menu options for the user
+	while(userInput != 6){
+		//when player makes 3 moves calls computerMove and reset counts
+	  if(count == 3){
+		  count = 0;
+		  cout << "Enemy Turn" << endl;
+		  enemyMove();
+	  }
+		//this if statement is needed after enemy's move
+	  if (userInput != 6){
+	  cout << 
+	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save Game\nEnter 1-7:" <<endl;
+	  cin >> userInput;
+	  }
+	  //move in the direction given after checking if its valid.
+
+	  /*
+		this part will take user's choice, check if its valid
+		then make the move on the board, it will check for win
+		in each move.
+	  */
+	  if(userInput == 1 && playerX != 0){
+	    
+	    cout<<"DEBUG: North"<<endl;
+	    array[playerX][playerY] = '-';
+	    playerX -= 1;
+	    array[playerX][playerY] = 'P';
+	    printBoard();
+		count++;
+		checkWin("Player");
+	  }
+	  else if(userInput == 2 && playerY != (size-1)){
+	    cout<<"DEBUG: East"<<endl;
+	    array[playerX][playerY] = '-';
+	    playerY += 1;
+	    array[playerX][playerY] = 'P';
+	    printBoard();
+		count++;
+		checkWin("Player");
+	  }
+	  else if(userInput == 3 && playerX != (size-1)){
+	    cout<<"DEBUG: South"<<endl;
+	    array[playerX][playerY] = '-';
+	    playerX += 1;
+	    array[playerX][playerY] = 'P';
+	    printBoard();
+		count++;
+		checkWin("Player");
+	  }
+	  else if(userInput == 4 && playerY != 0){
+	    cout<<"DEBUG: West"<<endl;
+	    array[playerX][playerY] = '-';
+	    playerY -= 1;
+	    array[playerX][playerY] = 'P';
+	    printBoard();
+		count++;
+		checkWin("Player");
+	  }
+	  else if(userInput == 5){
+	    printBoard();
+	  }else if(userInput == 7){
+		  saveBoard();
+		  
+	  }else if(userInput == 6){
+		  //needed when returns from enemy move.
+		  cout << "broke loop" << endl;
+		  break;
+	  }
+	  else{
+	    cout << "Movement is not valid" << endl;
+	    printBoard();
+	  }
+	  
+	}
+	
+	cout << "Exited" << endl;
 }
