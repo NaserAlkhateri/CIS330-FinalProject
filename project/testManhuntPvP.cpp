@@ -8,6 +8,7 @@ using namespace std;
 
 int main ()
 {
+	cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	int beginChoice = 0; 
 	cout << "Welcome to Manhunt!" << endl;
 	cout << "1.New Game\n2.Load Game" << endl;

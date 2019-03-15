@@ -69,6 +69,7 @@ BoardType::BoardType(){
   }
   array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
+  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 }
 
 
@@ -222,6 +223,8 @@ void BoardType::changeBoard(){
 		  count = 0;
 		  cout << "computer finished making 3 moves!" << endl;
 		  computerMove();
+		  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
+		  printBoard();
 	  }
 		//this if statement is needed after computer's move
 	  if (userInput != 6){
@@ -242,6 +245,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerX -= 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -251,6 +255,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerY += 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -260,6 +265,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerX += 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -269,11 +275,14 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerY -= 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
 	  }
 	  else if(userInput == 5){
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 	  }else if(userInput == 7){
 		  saveBoard();
@@ -285,6 +294,7 @@ void BoardType::changeBoard(){
 	  }
 	  else{
 	    cout << "Movement is not valid" << endl;
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 	  }
 	  
