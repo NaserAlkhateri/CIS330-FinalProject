@@ -19,7 +19,7 @@ BoardType::BoardType(){
   
   // While given int is out of bounds, prompt again
   while (size < sizeMin || size > sizeMax){
-    cout << "Please enter a value between 8 and 16 inclusive: ";
+    cout << "Please enter a value between 5 and 20 inclusive: ";
     cin >> size;
   }
   
@@ -372,3 +372,45 @@ void BoardType::enemyMove(){
 	cout << "Exited" << endl;
 }
 
+void BoardType::saveBoard(){
+	//saves player's and enemy's position and board size in a file
+	// the file is just numbers
+  string fileName;
+  cout << "What would like to name your fie? (name.txt): ";
+  cin >> fileName;
+  ofstream myFile;
+  myFile.open(fileName);
+  //this makes it easier to load 
+  myFile << playerX << " " << playerY << " " << enemyX << " " << enemyY << " " << size;
+  cout << "Game saved successfully in file name: " << fileName << endl;
+  myFile.close();
+  userInput = 6;//forces loop to stop = game ends
+
+}
+void BoardType::loadBoard(){
+  //load implementation
+  int pX,pY,eX,eY,boardSize;
+  string fileName;
+  cout << "What is the file name that you would like to load?: ";
+  cin >> fileName;
+	ifstream myFile;
+	myFile.open(fileName);
+	  if (myFile.is_open()){
+		  //saves the numbers from the file
+      myFile >> pX >> pY >> eX >> eY >> boardSize;
+    }else{ 
+	//if file not found tell the user and exit
+	cout << fileName <<" file not found, please check the file entered" << endl;
+	exit(1);
+	} 
+
+	myFile.close();
+
+	cout << "LOADED1: " <<pX<<" "<<pY<<" "<<eX<<" "<<eY<<" "<<boardSize<<endl;
+	playerX = pX;
+	playerY = pY;
+	enemyX = eX;
+	enemyY = eY;
+	size = boardSize;
+	
+}
