@@ -50,5 +50,20 @@ public:
   
   //Cleans memory
   ~BoardType();
+  
+private:
+  string **array;
+  int size;
+  int player;
+  int playerX;
+  int playerY;
+  int enemyX;
+  int enemyY;
+  int enemy;
+  bool isFinished;
+  string emptySlot;
+  int userInput;
+  
+};
 
 #endif
