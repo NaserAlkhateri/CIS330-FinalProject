@@ -300,7 +300,7 @@ void BoardType::enemyMove(){
 	  if(count == 3){
 		  count = 0;
 		  cout << "Player Turn" << endl;
-		  enemyMove();
+		  changeBoard();
 	  }
 		//this if statement is needed after player's move
 	  if (userInput != 6){
