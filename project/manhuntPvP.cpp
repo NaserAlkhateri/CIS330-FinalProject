@@ -277,3 +277,14 @@ void BoardType::changeBoard(){
 	
 	cout << "Exited" << endl;
 }
+
+void BoardType::checkWin(string winner){
+	//takes in the string of the current player for output
+	
+	cout << "checking move" << endl;
+	if (array[playerX][playerY] == array[enemyX][enemyY]){
+		cout << winner << " won!!!" << endl;
+		userInput = 6; //force the loop to stop
+	}
+  
+}
