@@ -37,6 +37,9 @@ public:
   
   // Returns boolean isFinished
   bool getIsFinished();
+  
+  //Prints threat bar.
+  void printThreat();
 
   //save game
   void saveBoard();

@@ -92,6 +92,8 @@ BoardType::BoardType(int x){
 }
 
 void BoardType::printBoard(){
+	
+	printThreat();
 	cout << "      ";
 	for (int i = 0; i < size; i++)
 	{
@@ -116,6 +118,68 @@ void BoardType::printBoard(){
 	
 	
 }
+
+void BoardType::printThreat(){
+	int threatCount;
+	int diffX = (playerX - botX);
+	if (diffX < 0){
+		diffX = diffX * (-1);
+	}
+	int diffY = (playerY - botY);
+	if (diffY < 0){
+		diffY = diffY * (-1);
+	}
+	
+	
+	if (diffX > diffY){
+		if(diffX == 5){
+			threatCount = 1;
+		}
+		else if(diffX == 4){
+			threatCount = 2;
+		}
+		else if(diffX == 3){
+			threatCount = 3;
+		}
+		else if(diffX == 2){
+			threatCount = 4;
+		}
+		else if(diffX == 1){
+			threatCount = 5;
+		}
+		else{
+			threatCount = 0;
+		}
+	}
+	else if (diffX <= diffY){
+		if(diffY == 5){
+			threatCount = 1;
+		}
+		else if(diffY == 4){
+			threatCount = 2;
+		}
+		else if(diffY == 3){
+			threatCount = 3;
+		}
+		else if(diffY == 2){
+			threatCount = 4;
+		}
+		else if(diffY == 1){
+			threatCount = 5;
+		}
+		else{
+			threatCount = 0;
+		}
+	}	
+	cout << "Threat Count--> ";
+	for (int i = 0; i < threatCount; i++){
+		cout << "[]";
+	}
+	cout << endl;
+	
+	
+}
+
 
 void BoardType::changeBoard(){
 	userInput = 0;
