@@ -65,7 +65,9 @@ BoardType::BoardType(){
 }
 
 BoardType::BoardType(int x){
-	
+	 // Used to move between user and enemy turn
+	player = 1;
+	enemy = 0;
 	loadBoard();
 	//array[playerX][playerY] = 'P';
 	cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<enemyX<<" "<<enemyY<<" "<<size<<endl;
