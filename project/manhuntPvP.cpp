@@ -288,3 +288,87 @@ void BoardType::checkWin(string winner){
 	}
   
 }
+
+void BoardType::enemyMove(){
+	
+	//userInput = 0;
+	int count = 0;
+	
+	//menu options for the user
+	while(userInput != 6){
+		//when player makes 3 moves calls changeBoard and reset counts
+	  if(count == 3){
+		  count = 0;
+		  cout << "Player Turn" << endl;
+		  enemyMove();
+	  }
+		//this if statement is needed after player's move
+	  if (userInput != 6){
+	  cout << 
+	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save Game\nEnter 1-7:" <<endl;
+	  cin >> userInput;
+	  }
+	  //move in the direction given after checking if its valid.
+
+	  /*
+		this part will take user's choice, check if its valid
+		then make the move on the board, it will check for win
+		in each move.
+	  */
+	  if(userInput == 1 && enemyX != 0){
+	    
+	    cout<<"DEBUG: North"<<endl;
+	    array[enemyX][enemyY] = '-';
+	    enemyX -= 1;
+	    array[enemyX][enemyY] = 'E';
+	    printBoard();
+		count++;
+		checkWin("Enemy");
+	  }
+	  else if(userInput == 2 && enemyY != (size-1)){
+	    cout<<"DEBUG: East"<<endl;
+	    array[enemyX][enemyY] = '-';
+	    enemyY += 1;
+	    array[enemyX][enemyY] = 'E';
+	    printBoard();
+		count++;
+		checkWin("Enemy");
+	  }
+	  else if(userInput == 3 && enemyX != (size-1)){
+	    cout<<"DEBUG: South"<<endl;
+	    array[enemyX][enemyY] = '-';
+	    enemyX += 1;
+	    array[enemyX][enemyY] = 'E';
+	    printBoard();
+		count++;
+		checkWin("Enemy");
+	  }
+	  else if(userInput == 4 && enemyY != 0){
+	    cout<<"DEBUG: West"<<endl;
+	    array[enemyX][enemyY] = '-';
+	    enemyY -= 1;
+	    array[enemyX][enemyY] = 'E';
+	    printBoard();
+		count++;
+		checkWin("Enemy");
+	  }
+	  else if(userInput == 5){
+	    printBoard();
+	  }else if(userInput == 7){
+		  saveBoard();
+		  
+	  }else if(userInput == 6){
+		  //needed when returns from enemy move.
+		  cout << "broke loop" << endl;
+		  break;
+	  }
+	  else{
+	    cout << "Movement is not valid" << endl;
+	    printBoard();
+	  }
+	  
+	}
+	
+	cout << "Exited" << endl;
+}
+
