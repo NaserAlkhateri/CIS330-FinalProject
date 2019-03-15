@@ -414,3 +414,15 @@ void BoardType::loadBoard(){
 	size = boardSize;
 	
 }
+
+bool BoardType::getIsFinished(){
+
+  return isFinished;
+
+}
+
+BoardType::~BoardType(){	
+  for (int i = 0; i < size; i++)
+    delete [] array[i];
+  delete [] array;
+}
