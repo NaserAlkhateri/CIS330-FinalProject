@@ -55,6 +55,7 @@ BoardType::BoardType(){
   srand(time(0));//to get a different number each time  
   botX = rand() % size;
   botY = rand() % size;
+  //makes sure bot doesnt match the coordinates, p.s user wouldn't notice anyway since there will be a move.
   if (botX == playerX && botY == playerY){
 		botX = rand() % size;
 		botY = rand() % size;
@@ -209,6 +210,7 @@ void BoardType::changeBoard(){
 	
 	//menu options for the user
 	while(userInput != 6){
+		//when player makes 3 moves calls computerMove and reset counts
 	  if(count == 3){
 		  count = 0;
 		  cout << "computer finished making 3 moves!" << endl;
@@ -222,6 +224,11 @@ void BoardType::changeBoard(){
 	  }
 	  //move in the direction given after checking if its valid.
 
+	  /*
+		this part will take user's choice, check if its valid
+		then make the move on the board, it will check for win
+		in each move.
+	  */
 	  if(userInput == 1 && playerX != 0){
 	    
 	    cout<<"DEBUG: North"<<endl;
@@ -265,6 +272,7 @@ void BoardType::changeBoard(){
 		  saveBoard();
 		  
 	  }else if(userInput == 6){
+		  //needed when returns from computer move.
 		  cout << "broke loop" << endl;
 		  break;
 	  }
@@ -275,10 +283,12 @@ void BoardType::changeBoard(){
 	  
 	}
 	
-	cout << "exited" << endl;
+	cout << "Exited" << endl;
 }
 
 void BoardType::checkWin(string winner){
+	//takes in the string of the current player for output
+	
 	cout << "checking move" << endl;
 	if (array[playerX][playerY] == array[botX][botY]){
 		cout << winner << " won!!!" << endl;
@@ -355,12 +365,14 @@ void BoardType::computerMove(){
 }
 
 void BoardType::saveBoard(){
-
+	//saves player's and bot's position and board size in a file
+	// the file is just numbers
   string fileName;
   cout << "What would like to name your fie? (name.txt): ";
   cin >> fileName;
   ofstream myFile;
   myFile.open(fileName);
+  //this makes it easier to load 
   myFile << playerX << " " << playerY << " " << botX << " " << botY << " " << size;
   cout << "Game saved successfully in file name: " << fileName << endl;
   myFile.close();
@@ -376,15 +388,21 @@ void BoardType::loadBoard(){
 	ifstream myFile;
 	myFile.open(fileName);
 	  if (myFile.is_open()){
+		  //saves the numbers from the file
       myFile >> pX >> pY >> bX >> bY >> boardSize;
-      //myFile.close();
-    }else cout << fileName <<" file not found, please check the file entered" << endl; 
-	 myFile.close();
+    }else{ 
+	//if file not found tell the user and exit
+	cout << fileName <<" file not found, please check the file entered" << endl;
+	exit(1);
+	} 
+
+	myFile.close();
 	//array[playerX][playerY] = 'P';
+
 	cout << "LOADED1: " <<pX<<" "<<pY<<" "<<bX<<" "<<bY<<" "<<boardSize<<endl;
 	playerX = pX;
 	playerY = pY;
-	botX= bX;
+	botX = bX;
 	botY = bY;
 	size = boardSize;
 	
