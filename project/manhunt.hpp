@@ -9,10 +9,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
+#include <limits>
 
 using namespace std;
 
-//class for board
+//Struct for board
 class BoardType{
 public:
   //Initializes board

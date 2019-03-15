@@ -9,19 +9,26 @@ BoardType::BoardType(){
   string **boardArr = nullptr;
   int sizeMax = 20;
   int sizeMin = 5;
-	
+	size = 0;
   // Used to move between user and computer turn
   player = 1;
   bot = 0;
 	
   // asks for user input on board size
-  cout << "Please enter the length of the board (5 - 20): ";
-  cin >> size;
+  //cout << "Please enter the length of the board (5 - 20): ";
+  //cin >> size;
   
   // While given int is out of bounds, prompt again
   while (size < sizeMin || size > sizeMax){
-    cout << "Please enter a value between 8 and 16 inclusive: ";
-    cin >> size;
+    cout << "Please enter the length of the board (5 - 20): ";
+	cin >> size;
+	/*
+	if(!(cin >> size) || size < sizeMin || size > sizeMax){
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(),'\n');
+		size = 0;
+    //cin >> size;
+	}*/
   }
   
   
