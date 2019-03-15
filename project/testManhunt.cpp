@@ -1,4 +1,4 @@
-//Author: Ahmed Al Ali
+//Author: Ahmed Al Ali, Naser Al Khateri, Majed Al Mazrouei
 //Main file.
 
 #include <iostream>
