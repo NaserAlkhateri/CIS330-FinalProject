@@ -265,7 +265,7 @@ void BoardType::changeBoard(){
 		  
 	  }else if(userInput == 6){
 		  //needed when returns from enemy move.
-		  cout << "broke loop" << endl;
+		  //cout << "broke loop" << endl;
 		  break;
 	  }
 	  else{
@@ -275,7 +275,7 @@ void BoardType::changeBoard(){
 	  
 	}
 	
-	cout << "Exited" << endl;
+	//cout << "Exited" << endl;
 }
 
 void BoardType::checkWin(string winner){
@@ -284,6 +284,7 @@ void BoardType::checkWin(string winner){
 	cout << "checking move" << endl;
 	if (array[playerX][playerY] == array[enemyX][enemyY]){
 		cout << winner << " won!!!" << endl;
+		cout << "Exited" << endl;
 		userInput = 6; //force the loop to stop
 	}
   
@@ -358,10 +359,10 @@ void BoardType::enemyMove(){
 		  saveBoard();
 		  
 	  }else if(userInput == 6){
-		  //needed when returns from enemy move.
-		  cout << "broke loop" << endl;
+		  //needed when returns from player move.
+		  //cout << "broke loop" << endl;
 		  break;
-	  }
+	  } 
 	  else{
 	    cout << "Movement is not valid" << endl;
 	    printBoard();
@@ -369,7 +370,7 @@ void BoardType::enemyMove(){
 	  
 	}
 	
-	cout << "Exited" << endl;
+	//cout << "Exited" << endl;
 }
 
 void BoardType::saveBoard(){
