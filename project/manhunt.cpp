@@ -40,6 +40,7 @@ BoardType::BoardType(){
   emptySlot = "-";
   size = size;
   array = boardArr;
+  userInput = 0;
   isFinished = false;
   printBoard();
   cout << "Investigator starting coordinates (x y): " << endl;
@@ -53,9 +54,11 @@ BoardType::BoardType(){
   array[playerX][playerY] = 'P';
   srand(time(0));//to get a different number each time  
   botX = rand() % size;
-  //is this needed again??
-  //srand(time(0));
   botY = rand() % size;
+  if (botX == playerX && botY == playerY){
+		botX = rand() % size;
+		botY = rand() % size;
+  }
   array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 }
@@ -85,6 +88,7 @@ BoardType::BoardType(int x){
   array = boardArr;
   isFinished = false;
   //printBoard();
+  userInput = 0;
   array[playerX][playerY] = 'P';
 	array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
@@ -200,8 +204,9 @@ void BoardType::printThreat(){
 
 
 void BoardType::changeBoard(){
-	userInput = 0;
+	//userInput = 0;
 	int count = 0;
+	
 	//menu options for the user
 	while(userInput != 6){
 	  if(count == 3){
@@ -209,9 +214,12 @@ void BoardType::changeBoard(){
 		  cout << "computer finished making 3 moves!" << endl;
 		  computerMove();
 	  }
+		//this if statement is needed after computer's move
+	  if (userInput != 6){
 	  cout << 
 	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save Game\nEnter 1-7:" <<endl;
 	  cin >> userInput;
+	  }
 	  //move in the direction given after checking if its valid.
 
 	  if(userInput == 1 && playerX != 0){
@@ -256,6 +264,9 @@ void BoardType::changeBoard(){
 	  }else if(userInput == 7){
 		  saveBoard();
 		  
+	  }else if(userInput == 6){
+		  cout << "broke loop" << endl;
+		  break;
 	  }
 	  else{
 	    cout << "Movement is not valid" << endl;
@@ -272,6 +283,7 @@ void BoardType::checkWin(string winner){
 	if (array[playerX][playerY] == array[botX][botY]){
 		cout << winner << " won!!!" << endl;
 		userInput = 6; //force the loop to stop
+		countBot = 3; //forces computer's move to stop
 	}
   
   
@@ -280,7 +292,7 @@ void BoardType::computerMove(){
 	//like the player options, computer will have a random move 1-4
 	int choice = 0;
 	srand(time(0));
-	int count = 0;
+	countBot = 0;
 	/*
 	srand(time(0));
 	choice = (rand() % 4) + 1;
@@ -289,7 +301,7 @@ void BoardType::computerMove(){
 	*/
 	//checks if move valid
 	array[botX][botY] = '-';
-	while(count < 3){
+	while(countBot < 3){
 	  //srand(time(0));
 	  choice = (rand() % 4) + 1;
 	  cout << "choice generated for CP: " << choice << endl;
@@ -299,7 +311,7 @@ void BoardType::computerMove(){
 	    //array[botX][botY] = '-';
 	    botX -= 1;
 	   
-		count++;
+		countBot++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 2 && botY != (size-1)){
@@ -307,7 +319,7 @@ void BoardType::computerMove(){
 	   
 	    botY += 1;
 	   
-		count++;
+		countBot++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 3 && botX != (size-1)){
@@ -315,7 +327,7 @@ void BoardType::computerMove(){
 	   
 	    botX += 1;
 	   
-		count++;
+		countBot++;
 		checkWin("Computer");
 	  }
 	  else if(choice == 4 && botY != 0){
@@ -324,7 +336,7 @@ void BoardType::computerMove(){
 	    botY -= 1;
 	   
 
-		count++;
+		countBot++;
 		checkWin("Computer");
 	  }else{
 	    //gives it a new random choice 
