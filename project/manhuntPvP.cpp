@@ -61,6 +61,7 @@ BoardType::BoardType(){
   enemyX = x;
   enemyY = y;
   array[enemyX][enemyY] = 'E';
+  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 }
 
 BoardType::BoardType(int x){
@@ -110,7 +111,15 @@ void BoardType::printBoard(){
 		cout << i << "     ";
 		for (int j = 0; j < size; j++)
 	{
-		cout << array[i][j] << "  ";
+		if ( player == 1 && array[i][j] == "E") {
+			cout << '-' << "  ";
+		}
+		else if ( enemy == 1 && array[i][j] == "P") {
+			cout << '-' << "  ";
+		}
+		else{
+			cout << array[i][j] << "  ";
+		}
 	}
 		cout << "\n";
     }
@@ -205,7 +214,12 @@ void BoardType::changeBoard(){
 		//when player makes 3 moves calls computerMove and reset counts
 	  if(count == 3){
 		  count = 0;
+		  // Changing turns
+		  player = 0;
+		  enemy = 1;
+		  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 		  cout << "Enemy Turn" << endl;
+		  printBoard();
 		  enemyMove();
 	  }
 		//this if statement is needed after enemy's move
@@ -227,6 +241,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerX -= 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -236,6 +251,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerY += 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -245,6 +261,7 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerX += 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
@@ -254,11 +271,13 @@ void BoardType::changeBoard(){
 	    array[playerX][playerY] = '-';
 	    playerY -= 1;
 	    array[playerX][playerY] = 'P';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Player");
 	  }
 	  else if(userInput == 5){
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 	  }else if(userInput == 7){
 		  saveBoard();
@@ -269,6 +288,7 @@ void BoardType::changeBoard(){
 		  break;
 	  }
 	  else{
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    cout << "Movement is not valid" << endl;
 	    printBoard();
 	  }
@@ -300,7 +320,12 @@ void BoardType::enemyMove(){
 		//when player makes 3 moves calls changeBoard and reset counts
 	  if(count == 3){
 		  count = 0;
+		  // Changing turns
+		  player = 1;
+		  enemy = 0;
+		  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 		  cout << "Player Turn" << endl;
+		  printBoard();
 		  changeBoard();
 	  }
 		//this if statement is needed after player's move
@@ -322,6 +347,7 @@ void BoardType::enemyMove(){
 	    array[enemyX][enemyY] = '-';
 	    enemyX -= 1;
 	    array[enemyX][enemyY] = 'E';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Enemy");
@@ -331,6 +357,7 @@ void BoardType::enemyMove(){
 	    array[enemyX][enemyY] = '-';
 	    enemyY += 1;
 	    array[enemyX][enemyY] = 'E';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Enemy");
@@ -340,6 +367,7 @@ void BoardType::enemyMove(){
 	    array[enemyX][enemyY] = '-';
 	    enemyX += 1;
 	    array[enemyX][enemyY] = 'E';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Enemy");
@@ -349,11 +377,13 @@ void BoardType::enemyMove(){
 	    array[enemyX][enemyY] = '-';
 	    enemyY -= 1;
 	    array[enemyX][enemyY] = 'E';
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 		count++;
 		checkWin("Enemy");
 	  }
 	  else if(userInput == 5){
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    printBoard();
 	  }else if(userInput == 7){
 		  saveBoard();
@@ -364,6 +394,7 @@ void BoardType::enemyMove(){
 		  break;
 	  } 
 	  else{
+		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 	    cout << "Movement is not valid" << endl;
 	    printBoard();
 	  }
