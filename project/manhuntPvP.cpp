@@ -66,7 +66,7 @@ BoardType::BoardType(int x){
 	
 	loadBoard();
 	//array[playerX][playerY] = 'P';
-	cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<botX<<" "<<botY<<" "<<size<<endl;
+	cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<enemyX<<" "<<enemyY<<" "<<size<<endl;
   int i, j;
   string **boardArr = nullptr;
 	//Initializes dynamic array for the board

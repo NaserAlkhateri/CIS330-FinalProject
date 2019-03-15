@@ -14,7 +14,7 @@ tests: manhunt.exe manhuntPvP.exe
 manhunt.exe: testManhunt.o manhunt.o
 	$(CC) $(CFLAGS) -o $@ $^
 
-manhuntPvP.exe: testManhuntPvP.o manhuntPvP.origins
+manhuntPvP.exe: testManhuntPvP.o manhuntPvP.o
 	$(CC) $(CFLAGS) -o $@ $^
 
 memcheckManhunt.exe: manhunt.exe
