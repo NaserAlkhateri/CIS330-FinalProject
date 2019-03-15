@@ -67,8 +67,8 @@ BoardType::BoardType(){
 		botX = rand() % size;
 		botY = rand() % size;
   }
-  array[botX][botY] = "C";
-  cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
+  //array[botX][botY] = "C"; //used for dubug only
+  //cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
   cout << "\033[2J\033[1;1H"; // This is used to clear the console window
 }
 
@@ -76,8 +76,8 @@ BoardType::BoardType(){
 BoardType::BoardType(int x){
 	
 	loadBoard();
-	//array[playerX][playerY] = 'P';
-	cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<botX<<" "<<botY<<" "<<size<<endl;
+	
+	//cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<botX<<" "<<botY<<" "<<size<<endl;
   int i, j;
   string **boardArr = nullptr;
 	//Initializes dynamic array for the board
@@ -99,8 +99,8 @@ BoardType::BoardType(int x){
   //printBoard();
   userInput = 0;
   array[playerX][playerY] = 'P';
-	array[botX][botY] = "C";
-  cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
+	//array[botX][botY] = "C";
+  //cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 	
 }
 
@@ -221,9 +221,12 @@ void BoardType::changeBoard(){
 		//when player makes 3 moves calls computerMove and reset counts
 	  if(count == 3){
 		  count = 0;
-		  cout << "computer finished making 3 moves!" << endl;
-		  computerMove();
 		  cout << "\033[2J\033[1;1H"; // This is used to clear the console window
+		  
+		  computerMove();
+		  //cout << "\033[2J\033[1;1H"; // This is used to clear the console window
+		  cout << "computer's turn finished" << endl;
+		  //cout << "computer finished making 3 moves!" << endl;
 		  printBoard();
 	  }
 		//this if statement is needed after computer's move
@@ -289,12 +292,13 @@ void BoardType::changeBoard(){
 		  
 	  }else if(userInput == 6){
 		  //needed when returns from computer move.
-		  cout << "broke loop" << endl;
+		  //cout << "broke loop" << endl;
 		  break;
 	  }
 	  else{
-	    cout << "Movement is not valid" << endl;
+	    //cout << "Movement is not valid" << endl;
 		cout << "\033[2J\033[1;1H"; // This is used to clear the console window
+		cout << "choice " << userInput <<" is not valid" << endl;
 	    printBoard();
 	  }
 	  
@@ -306,11 +310,14 @@ void BoardType::changeBoard(){
 void BoardType::checkWin(string winner){
 	//takes in the string of the current player for output
 	
-	cout << "checking move" << endl;
+	cout << "checking "<< winner <<" move" << endl;
 	if (array[playerX][playerY] == array[botX][botY]){
-		cout << winner << " won!!!" << endl;
+		cout << endl << winner << " won!!!" << endl;
 		userInput = 6; //force the loop to stop
 		countBot = 3; //forces computer's move to stop
+		if (winner == "Computer"){
+			array[botX][botY] = "C";
+		}
 	}
   
   
@@ -320,21 +327,16 @@ void BoardType::computerMove(){
 	int choice = 0;
 	srand(time(0));
 	countBot = 0;
-	/*
-	srand(time(0));
-	choice = (rand() % 4) + 1;
-	
-	cout << "choice generated for CP: " << choice << endl;
-	*/
+
 	//checks if move valid
-	array[botX][botY] = '-';
+	//array[botX][botY] = '-';
 	while(countBot < 3){
 	  //srand(time(0));
 	  choice = (rand() % 4) + 1;
-	  cout << "choice generated for CP: " << choice << endl;
+	  //cout << "choice generated for CP: " << choice << endl;
 	if(choice == 1 && botX != 0){
 	    
-	    cout<<"CP DEBUG: North"<<endl;
+	    //cout<<"CP DEBUG: North"<<endl;
 	    //array[botX][botY] = '-';
 	    botX -= 1;
 	   
@@ -342,7 +344,7 @@ void BoardType::computerMove(){
 		checkWin("Computer");
 	  }
 	  else if(choice == 2 && botY != (size-1)){
-	    cout<<"CP DEBUG: East"<<endl;
+	    //cout<<"CP DEBUG: East"<<endl;
 	   
 	    botY += 1;
 	   
@@ -350,7 +352,7 @@ void BoardType::computerMove(){
 		checkWin("Computer");
 	  }
 	  else if(choice == 3 && botX != (size-1)){
-	    cout<<"CP DEBUG: South"<<endl;
+	    //cout<<"CP DEBUG: South"<<endl;
 	   
 	    botX += 1;
 	   
@@ -358,7 +360,7 @@ void BoardType::computerMove(){
 		checkWin("Computer");
 	  }
 	  else if(choice == 4 && botY != 0){
-	    cout<< "CP DEBUG: West" << endl;
+	    //cout<< "CP DEBUG: West" << endl;
 	    
 	    botY -= 1;
 	   
@@ -376,8 +378,8 @@ void BoardType::computerMove(){
 	
 	
 	}
-	array[botX][botY] = "C";
-	cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
+	//array[botX][botY] = "C";
+	//cout << "CP DEBUG: coordinates" << botX << " " << botY << endl;
 	
 }
 
@@ -414,16 +416,15 @@ void BoardType::loadBoard(){
 	} 
 
 	myFile.close();
-	//array[playerX][playerY] = 'P';
-
-	cout << "LOADED1: " <<pX<<" "<<pY<<" "<<bX<<" "<<bY<<" "<<boardSize<<endl;
+	
+	//cout << "LOADED1: " <<pX<<" "<<pY<<" "<<bX<<" "<<bY<<" "<<boardSize<<endl;
 	playerX = pX;
 	playerY = pY;
 	botX = bX;
 	botY = bY;
 	size = boardSize;
 	
-	//return (pX,pY,bX,bY,boardSize);
+	
 }
 bool BoardType::getIsFinished(){
   
