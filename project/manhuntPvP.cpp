@@ -54,8 +54,8 @@ BoardType::BoardType(){
 
   cout << "Enemy starting coordinates (x y): " << endl;
   cin >> x >> y;
-  while ((x > (size-1) || x < 0)||(y > (size-1) || y < 0)){
-    cout << "Invalid input!\nInvestigator coordinates (x y): " << endl;
+  while ((x > (size-1) || x < 0)||(y > (size-1) || y < 0) || (array[x][y] == array[playerX][playerY])){
+    cout << "Invalid input!\nEnemy coordinates (x y): " << endl;
     cin >> x >> y;
   }
   enemyX = x;
