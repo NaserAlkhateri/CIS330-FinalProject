@@ -119,19 +119,28 @@ void BoardType::printBoard(){
 	
 }
 
+// This function prints the threat bar.
 void BoardType::printThreat(){
 	int threatCount;
+	
 	int diffX = (playerX - botX);
+	// This is to ensure absolute value.
 	if (diffX < 0){
 		diffX = diffX * (-1);
 	}
+	
 	int diffY = (playerY - botY);
+	// This is to ensure absolute value.
 	if (diffY < 0){
 		diffY = diffY * (-1);
 	}
 	
-	
+	// We check for the greater number, to ensure the
+	// right possible area of the opponent.
 	if (diffX > diffY){
+		// as difference decreases, threat increases.
+		// At the same time, the possible area becomes
+		// smaller (in terms of strategy).
 		if(diffX == 5){
 			threatCount = 1;
 		}
@@ -151,7 +160,13 @@ void BoardType::printThreat(){
 			threatCount = 0;
 		}
 	}
+	
+	// We check for the greater number, to ensure the
+	// right possible area of the opponent.	
 	else if (diffX <= diffY){
+		// as difference decreases, threat increases.
+		// At the same time, the possible area becomes
+		// smaller (in terms of strategy).
 		if(diffY == 5){
 			threatCount = 1;
 		}
@@ -171,6 +186,9 @@ void BoardType::printThreat(){
 			threatCount = 0;
 		}
 	}	
+	
+	//Printing the bars of threat detector
+	//depending on threat count variable calculated above.
 	cout << "Threat Count--> ";
 	for (int i = 0; i < threatCount; i++){
 		cout << "[]";
