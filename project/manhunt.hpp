@@ -63,6 +63,7 @@ private:
   bool isFinished;
   string emptySlot;
   int userInput;
+  int countBot;
   
 };
 
