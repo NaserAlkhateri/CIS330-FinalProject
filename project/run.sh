@@ -5,6 +5,8 @@ read -p "- To play vs computer enter (1)
 case "$make" in
     1) make manhunt.exe
 	   ./manhunt.exe;;
+	2) make manhuntPvP.exe
+	   ./manhuntPvP.exe;;
     3) make clean ;;
     *) echo "Wrong choice " ;;
 esac
