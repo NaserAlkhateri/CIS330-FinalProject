@@ -64,8 +64,8 @@ BoardType::BoardType(){
 BoardType::BoardType(int x){
 	
 	loadBoard();
-
- 
+	//array[playerX][playerY] = 'P';
+	cout << "LOADED: " <<playerX<<" "<<playerY<<" "<<botX<<" "<<botY<<" "<<size<<endl;
   int i, j;
   string **boardArr = nullptr;
 	//Initializes dynamic array for the board
@@ -85,6 +85,7 @@ BoardType::BoardType(int x){
   array = boardArr;
   isFinished = false;
   printBoard();
+  array[playerX][playerY] = 'P';
 	array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
 	
@@ -127,7 +128,7 @@ void BoardType::changeBoard(){
 		  computerMove();
 	  }
 	  cout << 
-	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save GameEnter 1-7:" <<endl;
+	    "Where would you like to search?\n1. North\n2. East\n3. South\n4. West\n5. See Map\n6. Exit\n7. Save Game\nEnter 1-7:" <<endl;
 	  cin >> userInput;
 	  //move in the direction given after checking if its valid.
 
@@ -274,17 +275,26 @@ void BoardType::saveBoard(){
 }
 void BoardType::loadBoard(){
   //load implementation
+  int pX,pY,bX,bY,boardSize;
   string fileName;
   cout << "What is the file name that you would like to load?: ";
   cin >> fileName;
 	ifstream myFile;
 	myFile.open(fileName);
 	  if (myFile.is_open()){
-      myFile >> playerX >> playerY >> botX >> botY >> size;
+      myFile >> pX >> pY >> bX >> bY >> boardSize;
       //myFile.close();
     }else cout << fileName <<" file not found, please check the file entered" << endl; 
 	 myFile.close();
-	array[playerX][playerY] = 'P';
+	//array[playerX][playerY] = 'P';
+	cout << "LOADED1: " <<pX<<" "<<pY<<" "<<bX<<" "<<bY<<" "<<boardSize<<endl;
+	playerX = pX;
+	playerY = pY;
+	botX= bX;
+	botY = bY;
+	size = boardSize;
+	
+	//return (pX,pY,bX,bY,boardSize);
 }
 bool BoardType::getIsFinished(){
   
