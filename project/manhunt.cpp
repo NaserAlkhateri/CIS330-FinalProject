@@ -84,7 +84,7 @@ BoardType::BoardType(int x){
   size = size;
   array = boardArr;
   isFinished = false;
-  printBoard();
+  //printBoard();
   array[playerX][playerY] = 'P';
 	array[botX][botY] = "C";
   cout<<"DEBUG: bot x,y "<< botX <<" "<< botY <<endl;
