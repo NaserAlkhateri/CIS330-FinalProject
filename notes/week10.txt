@@ -1,0 +1,12 @@
+Week10
+
+Team members:
+Ahmed Al-Ali
+Naser AlKhateri
+Majed AlMazrouei
+
+
+
+This week we have managed to finish the game. We have completed all implementations on player vs computer, and added the otion of player vs player. 
+We also added an option for the user to save and load of an unfinished round. We also added a bashscript for the user to compile and run the the game.
+Since the game can some times be difficult, we added the functionality of a threat detector for each player.
